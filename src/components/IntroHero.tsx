@@ -42,7 +42,7 @@ export function IntroHero({ onPlanetClick }: IntroHeroProps) {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 text-center px-6 flex flex-col items-center justify-center flex-1"
+        className="relative z-10 text-center px-6 flex flex-col items-center justify-center flex-1 pointer-events-none"
         style={{ opacity, scale, y }}
       >
         {/* Section title above RAEVD */}

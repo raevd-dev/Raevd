@@ -190,6 +190,8 @@ function OrbitingPlanet({
   hasRing,
   url
 }: OrbitingPlanetProps) {
+  // Determine cursor style based on planet configuration
+  const cursorStyle = isActive && url ? 'pointer' : isActive ? 'not-allowed' : 'default';
   const groupRef = useRef<Group>(null);
   const planetRef = useRef<Mesh>(null);
   const cloudRef = useRef<Mesh>(null);
@@ -245,12 +247,10 @@ function OrbitingPlanet({
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
-    if (isActive) {
-      if (url) {
-        window.open(url, '_blank', 'noopener,noreferrer');
-      } else {
-        onClick();
-      }
+    if (isActive && url) {
+      window.location.href = url;
+    } else if (isActive) {
+      onClick();
     }
   };
 
@@ -265,14 +265,20 @@ function OrbitingPlanet({
           onPointerOver={(e) => {
             e.stopPropagation();
             setHovered(true);
-            if (isActive) {
-              document.body.style.cursor = 'pointer';
+            // Update canvas cursor style
+            const canvasElement = document.querySelector('canvas');
+            if (canvasElement) {
+              canvasElement.style.cursor = cursorStyle;
             }
           }}
           onPointerOut={(e) => {
             e.stopPropagation();
             setHovered(false);
-            document.body.style.cursor = 'default';
+            // Reset canvas cursor
+            const canvasElement = document.querySelector('canvas');
+            if (canvasElement) {
+              canvasElement.style.cursor = 'grab';
+            }
           }}
         >
           <sphereGeometry args={[1, 32, 32]} />
@@ -293,14 +299,20 @@ function OrbitingPlanet({
           onPointerOver={(e) => {
             e.stopPropagation();
             setHovered(true);
-            if (isActive) {
-              document.body.style.cursor = 'pointer';
+            // Update canvas cursor style
+            const canvasElement = document.querySelector('canvas');
+            if (canvasElement) {
+              canvasElement.style.cursor = cursorStyle;
             }
           }}
           onPointerOut={(e) => {
             e.stopPropagation();
             setHovered(false);
-            document.body.style.cursor = 'default';
+            // Reset canvas cursor
+            const canvasElement = document.querySelector('canvas');
+            if (canvasElement) {
+              canvasElement.style.cursor = 'grab';
+            }
           }}
         >
           <sphereGeometry args={[1, 32, 32]} />
@@ -344,14 +356,21 @@ function OrbitingPlanet({
             onPointerOver={(e) => {
               e.stopPropagation();
               setHovered(true);
-              if (isActive) {
-                document.body.style.cursor = 'pointer';
+              // Update canvas cursor style
+              const event = e as unknown as { target: HTMLElement };
+              const canvasElement = document.querySelector('canvas');
+              if (canvasElement) {
+                canvasElement.style.cursor = cursorStyle;
               }
             }}
             onPointerOut={(e) => {
               e.stopPropagation();
               setHovered(false);
-              document.body.style.cursor = 'default';
+              // Reset canvas cursor
+              const canvasElement = document.querySelector('canvas');
+              if (canvasElement) {
+                canvasElement.style.cursor = 'grab';
+              }
             }}
           >
             <sphereGeometry args={[1, 128, 128]} />
@@ -717,6 +736,7 @@ export function InteractiveSolarSystem({ onPlanetClick }: InteractiveSolarSystem
       type: 'gas' as const,
       isActive: true,
       hasRing: true,
+      url: 'https://me.raevd.com',
     },
     {
       id: 'services',
@@ -766,9 +786,9 @@ export function InteractiveSolarSystem({ onPlanetClick }: InteractiveSolarSystem
   ];
 
   return (
-    <div className="absolute inset-0 w-full h-full">
+    <div className="absolute inset-0 w-full h-full z-0">
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
+        <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50 pointer-events-auto">
           <div className="flex flex-col items-center gap-4">
             <div className="w-12 h-12 border-4 border-cyan-400/20 border-t-cyan-400 rounded-full animate-spin" />
             <div className="text-cyan-400 text-sm tracking-widest animate-pulse">
@@ -780,6 +800,7 @@ export function InteractiveSolarSystem({ onPlanetClick }: InteractiveSolarSystem
       <Canvas
         camera={{ position: [0, 15, 25], fov: 50 }}
         gl={{ antialias: true, alpha: true }}
+        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', cursor: 'grab' }}
       >
         {/* Enhanced Lighting */}
         <ambientLight intensity={0.4} />
@@ -814,7 +835,7 @@ export function InteractiveSolarSystem({ onPlanetClick }: InteractiveSolarSystem
           />
         ))}
 
-        {/* Orbit controls for interaction */}
+        {/* Orbit controls for interaction - disabled mouse rotation to allow planet clicks */}
         <OrbitControls
           enableZoom={false}
           enablePan={false}
@@ -824,6 +845,7 @@ export function InteractiveSolarSystem({ onPlanetClick }: InteractiveSolarSystem
           minPolarAngle={Math.PI / 4}
           maxPolarAngle={Math.PI / 1.5}
           rotateSpeed={0.5}
+          enableDamping={false}
         />
       </Canvas>
     </div>
