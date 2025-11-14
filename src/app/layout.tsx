@@ -94,7 +94,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${spaceGrotesk.variable} antialiased font-sans`}>
+      <body className={`${spaceGrotesk.variable} antialiased font-sans select-none`}>
         <ClientErrorBoundary>
           <StructuredData />
           {children}

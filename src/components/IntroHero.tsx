@@ -29,7 +29,7 @@ export function IntroHero({ onPlanetClick }: IntroHeroProps) {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing"
       style={{ scrollSnapAlign: 'start' }}>
       {/* Three.js Interactive Solar System */}
       <InteractiveSolarSystem onPlanetClick={onPlanetClick} />

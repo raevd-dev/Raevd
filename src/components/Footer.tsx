@@ -13,10 +13,10 @@ export function Footer() {
   }>>([]);
 
   const socialLinks = [
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Mail, href: '#', label: 'Email' },
+    // { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Github, href: 'https://github.com/raevd-dev', label: 'GitHub' },
+    // { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Mail, href: 'mailto:contact@raevd.com', label: 'Email' },
   ];
 
   const currentYear = new Date().getFullYear();
@@ -37,7 +37,7 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="relative py-24 px-6 overflow-hidden" style={{ scrollSnapAlign: 'start' }}>
+    <footer className="relative py-24 px-6 overflow-hidden cursor-default" style={{ scrollSnapAlign: 'start' }}>
       {/* Animated nebula background */}
       <motion.div
         className="absolute inset-0 bg-linear-to-t from-purple-900/20 via-cyan-900/10 to-transparent"
@@ -101,7 +101,7 @@ export function Footer() {
             viewport={{ once: true }}
           >
             <a
-              href="#contact"
+              href="mailto:contact@raevd.com"
               className="inline-block px-10 py-5 rounded-full bg-linear-to-r from-cyan-500 to-purple-500 text-white relative overflow-hidden group"
             >
               <span className="relative z-10 flex items-center gap-2">
