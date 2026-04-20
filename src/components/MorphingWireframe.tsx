@@ -8,9 +8,23 @@ gsap.registerPlugin(ScrollTrigger);
 export function MorphingWireframe() {
   const mountRef = useRef<HTMLDivElement>(null);
 
+  const fallbackRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const mount = mountRef.current;
     if (!mount) return;
+
+    // Probe WebGL availability — sandboxed iframes / headless browsers may block it.
+    const probe = document.createElement("canvas");
+    const hasWebGL = !!(
+      probe.getContext("webgl2") ||
+      probe.getContext("webgl") ||
+      probe.getContext("experimental-webgl")
+    );
+    if (!hasWebGL) {
+      if (fallbackRef.current) fallbackRef.current.style.opacity = "1";
+      return;
+    }
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
@@ -21,7 +35,14 @@ export function MorphingWireframe() {
     );
     camera.position.z = 4;
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, failIfMajorPerformanceCaveat: false });
+    } catch (err) {
+      console.warn("WebGL unavailable, using CSS fallback", err);
+      if (fallbackRef.current) fallbackRef.current.style.opacity = "1";
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     renderer.setClearColor(0x000000, 0);
@@ -163,10 +184,25 @@ export function MorphingWireframe() {
   }, []);
 
   return (
-    <div
-      ref={mountRef}
-      className="pointer-events-none fixed inset-0 z-10"
-      aria-hidden="true"
-    />
+    <>
+      <div
+        ref={mountRef}
+        className="pointer-events-none fixed inset-0 z-10"
+        aria-hidden="true"
+      />
+      <div
+        ref={fallbackRef}
+        className="pointer-events-none fixed inset-0 z-10 flex items-center justify-center opacity-0 transition-opacity duration-1000"
+        aria-hidden="true"
+      >
+        <div className="relative h-[55vmin] w-[55vmin]">
+          <div className="absolute inset-0 rounded-full border border-foreground/20 animate-[spin_28s_linear_infinite]" />
+          <div className="absolute inset-[8%] rounded-full border border-foreground/15 animate-[spin_18s_linear_infinite_reverse]" />
+          <div className="absolute inset-[18%] rounded-full border border-foreground/10 animate-[spin_38s_linear_infinite]" />
+          <div className="absolute inset-[30%] rounded-full border border-dashed border-foreground/20 animate-[spin_22s_linear_infinite_reverse]" />
+          <div className="absolute inset-[42%] rounded-full bg-foreground/5 backdrop-blur-sm" />
+        </div>
+      </div>
+    </>
   );
 }
