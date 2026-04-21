@@ -215,11 +215,11 @@ export function MorphingWireframe() {
         aria-hidden="true"
       >
         <div className="relative h-[55vmin] w-[55vmin]">
-          <div className="absolute inset-0 rounded-full border border-foreground/20 animate-[spin_28s_linear_infinite]" />
-          <div className="absolute inset-[8%] rounded-full border border-foreground/15 animate-[spin_18s_linear_infinite_reverse]" />
-          <div className="absolute inset-[18%] rounded-full border border-foreground/10 animate-[spin_38s_linear_infinite]" />
-          <div className="absolute inset-[30%] rounded-full border border-dashed border-foreground/20 animate-[spin_22s_linear_infinite_reverse]" />
-          <div className="absolute inset-[42%] rounded-full bg-foreground/5 backdrop-blur-sm" />
+          <div className="absolute inset-0 rounded-full border border-brand/30 animate-[spin_28s_linear_infinite]" />
+          <div className="absolute inset-[8%] rounded-full border border-brand/25 animate-[spin_18s_linear_infinite_reverse]" />
+          <div className="absolute inset-[18%] rounded-full border border-brand/20 animate-[spin_38s_linear_infinite]" />
+          <div className="absolute inset-[30%] rounded-full border border-dashed border-brand/30 animate-[spin_22s_linear_infinite_reverse]" />
+          <div className="absolute inset-[42%] rounded-full bg-brand/10 backdrop-blur-sm" />
         </div>
       </div>
     </>
