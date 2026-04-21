@@ -139,6 +139,17 @@
 }
 
 :root {
+  /* Light theme — RAEVD inverse */
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.12 0 0);
+  --muted: oklch(0.94 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --border: oklch(0.88 0 0);
+  --accent: oklch(0.55 0.18 50);
+  --grid-line: oklch(0 0 0 / 0.05);
+}
+
+.dark {
   --background: oklch(0 0 0);
   --foreground: oklch(0.98 0 0);
   --muted: oklch(0.15 0 0);
@@ -155,7 +166,7 @@
 
   html,
   body {
-    background-color: #000000;
+    background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-weight: 200;
@@ -168,8 +179,8 @@
   }
 
   ::selection {
-    background: oklch(1 0 0 / 0.15);
-    color: oklch(1 0 0);
+    background: color-mix(in oklab, var(--color-foreground) 15%, transparent);
+    color: var(--color-foreground);
   }
 }
 
