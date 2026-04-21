@@ -30,6 +30,9 @@ export function Navigation() {
         <a href="#proof" className="font-mono-label text-brand/70 transition-colors hover:text-brand">
           Proof
         </a>
+        <a href="#contact" className="font-mono-label text-brand/70 transition-colors hover:text-brand">
+          Contact
+        </a>
       </div>
       <div className="col-span-2 flex items-center justify-end gap-6">
         <button
