@@ -5,6 +5,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Manifesto } from "@/components/sections/Manifesto";
 import { SolutionMatrix } from "@/components/sections/SolutionMatrix";
 import { TechnicalProof } from "@/components/sections/TechnicalProof";
+import { Contact } from "@/components/sections/Contact";
 import { Portal } from "@/components/sections/Portal";
 import { SectionPinner } from "@/components/SectionPinner";
 
@@ -45,6 +46,7 @@ function Index() {
         <Manifesto />
         <SolutionMatrix />
         <TechnicalProof />
+        <Contact />
         <Portal />
       </div>
     </main>
