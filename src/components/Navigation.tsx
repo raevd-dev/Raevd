@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useTheme } from "@/hooks/use-theme";
+import logo from "@/assets/raevd-logo.png";
 
 export function Navigation() {
   const { theme, toggleTheme } = useTheme();
@@ -11,9 +12,13 @@ export function Navigation() {
       className="fixed top-0 left-0 right-0 z-50 grid-12 px-8 py-6 mix-blend-difference"
     >
       <div className="col-span-2">
-        <span className="font-display text-xl tracking-tighter text-foreground">
-          RAEVD
-        </span>
+        <a href="#" className="inline-flex items-center gap-2">
+          <img
+            src={logo}
+            alt="RAEVD"
+            className="h-7 w-auto"
+          />
+        </a>
       </div>
       <div className="col-span-8 flex items-center justify-center gap-12">
         <a href="#manifesto" className="font-mono-label text-foreground/70 transition-colors hover:text-foreground">

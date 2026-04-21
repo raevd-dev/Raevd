@@ -52,6 +52,8 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -139,24 +141,31 @@
 }
 
 :root {
-  /* Light theme — RAEVD inverse */
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0.12 0 0);
-  --muted: oklch(0.94 0 0);
-  --muted-foreground: oklch(0.45 0 0);
-  --border: oklch(0.88 0 0);
-  --accent: oklch(0.55 0.18 50);
-  --grid-line: oklch(0 0 0 / 0.05);
+  /* Light theme — RAEVD brand (deep teal on warm off-white) */
+  --background: oklch(0.97 0.005 180);
+  --foreground: oklch(0.32 0.055 195);
+  --muted: oklch(0.93 0.012 190);
+  --muted-foreground: oklch(0.48 0.04 195);
+  --border: oklch(0.85 0.02 190);
+  --brand: oklch(0.42 0.07 195);
+  --brand-foreground: oklch(0.97 0.005 180);
+  --accent: oklch(0.78 0.09 200);
+  --accent-foreground: oklch(0.32 0.055 195);
+  --grid-line: oklch(0.32 0.055 195 / 0.06);
 }
 
 .dark {
-  --background: oklch(0 0 0);
-  --foreground: oklch(0.98 0 0);
-  --muted: oklch(0.15 0 0);
-  --muted-foreground: oklch(0.55 0 0);
-  --border: oklch(0.18 0 0);
-  --accent: oklch(0.85 0.18 85);
-  --grid-line: oklch(1 0 0 / 0.04);
+  /* Dark theme — RAEVD brand (luminous teal on near-black) */
+  --background: oklch(0.12 0.015 195);
+  --foreground: oklch(0.92 0.04 195);
+  --muted: oklch(0.18 0.02 195);
+  --muted-foreground: oklch(0.62 0.05 195);
+  --border: oklch(0.28 0.04 195);
+  --brand: oklch(0.62 0.11 195);
+  --brand-foreground: oklch(0.12 0.015 195);
+  --accent: oklch(0.78 0.09 200);
+  --accent-foreground: oklch(0.12 0.015 195);
+  --grid-line: oklch(0.92 0.04 195 / 0.05);
 }
 
 @layer base {
