@@ -9,7 +9,7 @@ export function Navigation() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 grid-12 px-8 py-6 mix-blend-difference"
+      className="fixed top-0 left-0 right-0 z-50 grid-12 px-8 py-6 backdrop-blur-sm"
     >
       <div className="col-span-2">
         <a href="#" className="inline-flex items-center gap-2">
@@ -17,17 +17,23 @@ export function Navigation() {
             src={logo}
             alt="RAEVD"
             className="h-7 w-auto"
+            style={{
+              filter:
+                theme === "dark"
+                  ? "brightness(0) saturate(100%) invert(72%) sepia(38%) saturate(450%) hue-rotate(140deg) brightness(95%) contrast(92%)"
+                  : "none",
+            }}
           />
         </a>
       </div>
       <div className="col-span-8 flex items-center justify-center gap-12">
-        <a href="#manifesto" className="font-mono-label text-foreground/70 transition-colors hover:text-foreground">
+        <a href="#manifesto" className="font-mono-label text-brand/70 transition-colors hover:text-brand">
           Manifesto
         </a>
-        <a href="#matrix" className="font-mono-label text-foreground/70 transition-colors hover:text-foreground">
+        <a href="#matrix" className="font-mono-label text-brand/70 transition-colors hover:text-brand">
           Matrix
         </a>
-        <a href="#proof" className="font-mono-label text-foreground/70 transition-colors hover:text-foreground">
+        <a href="#proof" className="font-mono-label text-brand/70 transition-colors hover:text-brand">
           Proof
         </a>
       </div>
@@ -36,11 +42,11 @@ export function Navigation() {
           type="button"
           onClick={toggleTheme}
           aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-          className="font-mono-label text-foreground/70 transition-colors hover:text-foreground"
+          className="font-mono-label text-brand/70 transition-colors hover:text-brand"
         >
           {theme === "dark" ? "Light" : "Dark"}
         </button>
-        <a href="#portal" className="font-mono-label text-foreground">
+        <a href="#portal" className="font-mono-label text-brand">
           Portal →
         </a>
       </div>
