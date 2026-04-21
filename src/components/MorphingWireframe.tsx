@@ -35,6 +35,13 @@ export function MorphingWireframe() {
     );
     camera.position.z = 4;
 
+    // Read theme-aware foreground color from CSS so wireframe inverts with theme
+    const getThemeColor = () => {
+      const cs = getComputedStyle(document.documentElement);
+      const c = cs.getPropertyValue("--foreground").trim() || "oklch(0.98 0 0)";
+      return new THREE.Color(c);
+    };
+
     let renderer: THREE.WebGLRenderer;
     try {
       renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, failIfMajorPerformanceCaveat: false });
@@ -103,7 +110,7 @@ export function MorphingWireframe() {
     // Wireframe material via edges
     const edges = new THREE.EdgesGeometry(baseGeometry, 1);
     const lineMat = new THREE.LineBasicMaterial({
-      color: 0xffffff,
+      color: getThemeColor(),
       transparent: true,
       opacity: 0.55,
     });
@@ -112,7 +119,7 @@ export function MorphingWireframe() {
 
     // Inner soft point cloud
     const pointsMat = new THREE.PointsMaterial({
-      color: 0xffffff,
+      color: getThemeColor(),
       size: 0.012,
       transparent: true,
       opacity: 0.7,
@@ -168,9 +175,21 @@ export function MorphingWireframe() {
     };
     window.addEventListener("resize", handleResize);
 
+    // React to theme class changes on <html>
+    const themeObserver = new MutationObserver(() => {
+      const c = getThemeColor();
+      lineMat.color.copy(c);
+      pointsMat.color.copy(c);
+    });
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", handleResize);
+      themeObserver.disconnect();
       scrollTrigger.kill();
       renderer.dispose();
       baseGeometry.dispose();
