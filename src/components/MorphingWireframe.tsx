@@ -35,10 +35,10 @@ export function MorphingWireframe() {
     );
     camera.position.z = 4;
 
-    // Read theme-aware foreground color from CSS so wireframe inverts with theme
+    // Read brand teal from CSS so wireframe always uses RAEVD logo color
     const getThemeColor = () => {
       const cs = getComputedStyle(document.documentElement);
-      const c = cs.getPropertyValue("--foreground").trim() || "oklch(0.98 0 0)";
+      const c = cs.getPropertyValue("--brand").trim() || "oklch(0.62 0.11 195)";
       return new THREE.Color(c);
     };
 

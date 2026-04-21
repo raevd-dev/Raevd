@@ -17,12 +17,6 @@ export function Navigation() {
             src={logo}
             alt="RAEVD"
             className="h-7 w-auto"
-            style={{
-              filter:
-                theme === "dark"
-                  ? "brightness(0) saturate(100%) invert(72%) sepia(38%) saturate(450%) hue-rotate(140deg) brightness(95%) contrast(92%)"
-                  : "none",
-            }}
           />
         </a>
       </div>
