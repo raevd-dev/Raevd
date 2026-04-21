@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
+import { useTheme } from "@/hooks/use-theme";
 
 export function Navigation() {
+  const { theme, toggleTheme } = useTheme();
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
@@ -24,7 +26,15 @@ export function Navigation() {
           Proof
         </a>
       </div>
-      <div className="col-span-2 flex justify-end">
+      <div className="col-span-2 flex items-center justify-end gap-6">
+        <button
+          type="button"
+          onClick={toggleTheme}
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          className="font-mono-label text-foreground/70 transition-colors hover:text-foreground"
+        >
+          {theme === "dark" ? "Light" : "Dark"}
+        </button>
         <a href="#portal" className="font-mono-label text-foreground">
           Portal →
         </a>
