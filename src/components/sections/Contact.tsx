@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { StaggeredText } from "../StaggeredText";
 
 type Status = "idle" | "submitting" | "success";
-type FieldName = "name" | "email" | "contact" | "message";
+type FieldName = "name" | "email" | "message";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -19,9 +19,6 @@ function validateField(name: FieldName, value: string): string | undefined {
       if (!v) return "Email is required";
       if (!EMAIL_RE.test(v)) return "Enter a valid email (e.g. you@domain.com)";
       if (v.length > 255) return "Email is too long";
-      return;
-    case "contact":
-      if (v.length > 200) return "Keep it under 200 characters";
       return;
     case "message":
       if (!v) return "Please describe the problem";
