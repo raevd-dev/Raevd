@@ -164,29 +164,8 @@ export function Contact() {
                 />
                 <div className="md:col-span-2">
                   <Field
-                    label="Other channel (optional)"
-                    index="03"
-                    error={touched.contact ? errors.contact : undefined}
-                    valid={touched.contact && !errors.contact && form.contact.length > 0}
-                    hint="LinkedIn, Telegram, phone — anything secondary."
-                    input={
-                      <input
-                        type="text"
-                        value={form.contact}
-                        maxLength={200}
-                        onChange={(e) => update("contact", e.target.value)}
-                        onBlur={() => markTouched("contact")}
-                        aria-invalid={touched.contact && !!errors.contact}
-                        className={inputClass(touched.contact, errors.contact)}
-                        placeholder="LinkedIn, Telegram, phone…"
-                      />
-                    }
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <Field
                     label="Describe the problem"
-                    index="04"
+                    index="03"
                     error={touched.message ? errors.message : undefined}
                     valid={touched.message && !errors.message}
                     hint="What needs to be built, fixed, or rearchitected?"
