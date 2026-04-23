@@ -84,27 +84,27 @@ export function Contact() {
     <section
       id="contact"
       data-section="contact"
-      className="section relative flex min-h-screen w-full items-center py-24"
+      className="section relative flex min-h-screen w-full items-center py-24 pt-32 lg:pt-24"
     >
-      <div className="grid-12 w-full px-8">
-        <div className="col-span-1">
+      <div className="grid-12 w-full px-4 md:px-6 lg:px-8">
+        <div className="col-span-4 md:col-span-8 lg:col-span-1">
           <div className="font-mono-label text-muted-foreground">04 / Signal</div>
         </div>
-        <div className="col-span-10 col-start-2">
+        <div className="col-span-4 md:col-span-8 lg:col-span-10 lg:col-start-2 mt-4 lg:mt-0">
           <StaggeredText
             as="h2"
             text="Describe the problem."
-            className="font-display text-[clamp(2.5rem,8vw,9rem)] text-foreground leading-[0.95]"
+            className="font-display text-[clamp(2.25rem,8vw,9rem)] text-foreground leading-[0.95]"
           />
           <StaggeredText
             as="h2"
             text="We answer in signal."
-            className="font-display text-[clamp(2.5rem,8vw,9rem)] text-foreground/30 italic leading-[0.95]"
+            className="font-display text-[clamp(2.25rem,8vw,9rem)] text-foreground/30 italic leading-[0.95]"
             delay={0.15}
           />
         </div>
 
-        <div className="col-span-10 col-start-2 mt-20">
+        <div className="col-span-4 md:col-span-8 lg:col-span-10 lg:col-start-2 mt-12 lg:mt-20">
           <AnimatePresence mode="wait">
             {status === "success" ? (
               <SuccessCard
@@ -212,7 +212,7 @@ export function Contact() {
 
 function inputClass(touched: boolean, error: string | undefined) {
   const base =
-    "w-full border-b bg-transparent py-3 font-display text-2xl text-foreground placeholder:text-foreground/30 focus:outline-none transition-colors";
+    "w-full border-b bg-transparent py-3 font-display text-lg md:text-xl lg:text-2xl text-foreground placeholder:text-foreground/30 focus:outline-none transition-colors";
   if (touched && error) return `${base} border-destructive focus:border-destructive`;
   if (touched && !error) return `${base} border-brand/60 focus:border-brand`;
   return `${base} border-foreground/20 focus:border-brand`;
