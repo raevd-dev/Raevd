@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { StaggeredText } from "../StaggeredText";
 
 type Status = "idle" | "submitting" | "success";
-type FieldName = "name" | "email" | "contact" | "message";
+type FieldName = "name" | "email" | "message";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -20,9 +20,6 @@ function validateField(name: FieldName, value: string): string | undefined {
       if (!EMAIL_RE.test(v)) return "Enter a valid email (e.g. you@domain.com)";
       if (v.length > 255) return "Email is too long";
       return;
-    case "contact":
-      if (v.length > 200) return "Keep it under 200 characters";
-      return;
     case "message":
       if (!v) return "Please describe the problem";
       if (v.trim().length < 10) return "Add at least 10 characters of context";
@@ -36,13 +33,11 @@ export function Contact() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    contact: "",
     message: "",
   });
   const [touched, setTouched] = useState<Record<FieldName, boolean>>({
     name: false,
     email: false,
-    contact: false,
     message: false,
   });
   const [submittedEmail, setSubmittedEmail] = useState("");
@@ -52,14 +47,13 @@ export function Contact() {
     () => ({
       name: validateField("name", form.name),
       email: validateField("email", form.email),
-      contact: validateField("contact", form.contact),
       message: validateField("message", form.message),
     }),
     [form],
   );
 
   const isValid =
-    !errors.name && !errors.email && !errors.contact && !errors.message;
+    !errors.name && !errors.email && !errors.message;
 
   function update(field: FieldName, value: string) {
     setForm((f) => ({ ...f, [field]: value }));
@@ -71,7 +65,7 @@ export function Contact() {
 
   function handleSubmit(ev: FormEvent) {
     ev.preventDefault();
-    setTouched({ name: true, email: true, contact: true, message: true });
+    setTouched({ name: true, email: true, message: true });
     if (!isValid) return;
     setStatus("submitting");
     setSubmittedEmail(form.email.trim());
@@ -81,8 +75,8 @@ export function Contact() {
   }
 
   function reset() {
-    setForm({ name: "", email: "", contact: "", message: "" });
-    setTouched({ name: false, email: false, contact: false, message: false });
+    setForm({ name: "", email: "", message: "" });
+    setTouched({ name: false, email: false, message: false });
     setStatus("idle");
   }
 
@@ -170,29 +164,8 @@ export function Contact() {
                 />
                 <div className="md:col-span-2">
                   <Field
-                    label="Other channel (optional)"
-                    index="03"
-                    error={touched.contact ? errors.contact : undefined}
-                    valid={touched.contact && !errors.contact && form.contact.length > 0}
-                    hint="LinkedIn, Telegram, phone — anything secondary."
-                    input={
-                      <input
-                        type="text"
-                        value={form.contact}
-                        maxLength={200}
-                        onChange={(e) => update("contact", e.target.value)}
-                        onBlur={() => markTouched("contact")}
-                        aria-invalid={touched.contact && !!errors.contact}
-                        className={inputClass(touched.contact, errors.contact)}
-                        placeholder="LinkedIn, Telegram, phone…"
-                      />
-                    }
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <Field
                     label="Describe the problem"
-                    index="04"
+                    index="03"
                     error={touched.message ? errors.message : undefined}
                     valid={touched.message && !errors.message}
                     hint="What needs to be built, fixed, or rearchitected?"
