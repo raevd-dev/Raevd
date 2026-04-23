@@ -112,7 +112,7 @@ export function MorphingWireframe() {
     const lineMat = new THREE.LineBasicMaterial({
       color: getThemeColor(),
       transparent: true,
-      opacity: 0.55,
+      opacity: 0.18,
     });
     const wireframe = new THREE.LineSegments(edges, lineMat);
     scene.add(wireframe);
@@ -122,7 +122,7 @@ export function MorphingWireframe() {
       color: getThemeColor(),
       size: 0.012,
       transparent: true,
-      opacity: 0.7,
+      opacity: 0.25,
     });
     const points = new THREE.Points(baseGeometry, pointsMat);
     scene.add(points);
