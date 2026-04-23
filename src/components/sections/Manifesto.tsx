@@ -8,11 +8,11 @@ export function Manifesto() {
       data-section="manifesto"
       className="section relative flex min-h-screen w-full items-center"
     >
-      <div className="grid-12 w-full px-8">
-        <div className="col-span-1 self-start">
+      <div className="grid-12 w-full px-4 md:px-6 lg:px-8 py-24 lg:py-0">
+        <div className="col-span-4 md:col-span-8 lg:col-span-1 self-start">
           <div className="font-mono-label text-muted-foreground">01 / Why</div>
         </div>
-        <div className="col-span-9 col-start-2">
+        <div className="col-span-4 md:col-span-8 lg:col-span-9 lg:col-start-2 mt-4 lg:mt-0">
           <StaggeredText
             as="h2"
             text="Most work shouts."
@@ -26,10 +26,10 @@ export function Manifesto() {
           />
         </div>
 
-        <div className="col-span-1 col-start-2 mt-24">
+        <div className="col-span-4 md:col-span-8 lg:col-span-1 lg:col-start-2 mt-12 lg:mt-24">
           <div className="font-mono-label text-muted-foreground">Doctrine</div>
         </div>
-        <div className="col-span-4 col-start-3 mt-24">
+        <div className="col-span-4 md:col-span-6 lg:col-span-4 lg:col-start-3 mt-2 lg:mt-24">
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
