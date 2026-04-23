@@ -11,6 +11,10 @@ gsap.registerPlugin(ScrollTrigger);
  */
 export function SectionPinner() {
   useEffect(() => {
+    // Skip pin/fade choreography on mobile/tablet — keeps content readable
+    // and avoids opacity glitches on touch scroll.
+    if (window.matchMedia("(max-width: 1023px)").matches) return;
+
     const ctx = gsap.context(() => {
       const sections = gsap.utils.toArray<HTMLElement>(".section[data-section]");
 
