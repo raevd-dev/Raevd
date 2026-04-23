@@ -33,13 +33,11 @@ export function Contact() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    contact: "",
     message: "",
   });
   const [touched, setTouched] = useState<Record<FieldName, boolean>>({
     name: false,
     email: false,
-    contact: false,
     message: false,
   });
   const [submittedEmail, setSubmittedEmail] = useState("");
@@ -49,14 +47,13 @@ export function Contact() {
     () => ({
       name: validateField("name", form.name),
       email: validateField("email", form.email),
-      contact: validateField("contact", form.contact),
       message: validateField("message", form.message),
     }),
     [form],
   );
 
   const isValid =
-    !errors.name && !errors.email && !errors.contact && !errors.message;
+    !errors.name && !errors.email && !errors.message;
 
   function update(field: FieldName, value: string) {
     setForm((f) => ({ ...f, [field]: value }));
@@ -68,7 +65,7 @@ export function Contact() {
 
   function handleSubmit(ev: FormEvent) {
     ev.preventDefault();
-    setTouched({ name: true, email: true, contact: true, message: true });
+    setTouched({ name: true, email: true, message: true });
     if (!isValid) return;
     setStatus("submitting");
     setSubmittedEmail(form.email.trim());
@@ -78,8 +75,8 @@ export function Contact() {
   }
 
   function reset() {
-    setForm({ name: "", email: "", contact: "", message: "" });
-    setTouched({ name: false, email: false, contact: false, message: false });
+    setForm({ name: "", email: "", message: "" });
+    setTouched({ name: false, email: false, message: false });
     setStatus("idle");
   }
 
