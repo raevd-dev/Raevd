@@ -21,6 +21,7 @@ export function SectionPinner() {
       sections.forEach((section) => {
         if (section.dataset.section === "proof") return;
         if (section.dataset.section === "contact") return;
+        if (section.dataset.section === "portal") return;
 
         gsap.fromTo(
           section,
