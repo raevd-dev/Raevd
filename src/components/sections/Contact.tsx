@@ -212,7 +212,7 @@ export function Contact() {
 
 function inputClass(touched: boolean, error: string | undefined) {
   const base =
-    "w-full border-b bg-transparent py-3 font-display text-2xl text-foreground placeholder:text-foreground/30 focus:outline-none transition-colors";
+    "w-full border-b bg-transparent py-3 font-display text-lg md:text-xl lg:text-2xl text-foreground placeholder:text-foreground/30 focus:outline-none transition-colors";
   if (touched && error) return `${base} border-destructive focus:border-destructive`;
   if (touched && !error) return `${base} border-brand/60 focus:border-brand`;
   return `${base} border-foreground/20 focus:border-brand`;
