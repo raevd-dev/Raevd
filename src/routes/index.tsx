@@ -36,7 +36,7 @@ function Index() {
   return (
     <main className="relative bg-background text-foreground noise">
       <div className="pointer-events-none fixed inset-0 z-0 bg-grid opacity-60" />
-      <div className="pointer-events-none fixed inset-0 z-10 opacity-40 md:opacity-50">
+      <div className="pointer-events-none fixed inset-0 z-10 opacity-15 md:opacity-20">
         <Suspense fallback={null}>
           <MorphingWireframe />
         </Suspense>
