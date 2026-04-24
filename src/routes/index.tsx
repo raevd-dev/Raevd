@@ -13,6 +13,8 @@ const MorphingWireframe = lazy(() =>
   import("@/components/MorphingWireframe").then((m) => ({ default: m.MorphingWireframe })),
 );
 
+const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://raevd.com").replace(/\/+$/, "");
+
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
@@ -29,8 +31,10 @@ export const Route = createFileRoute("/")({
         content:
           "System Architecture, Custom Web Solutions, and Minimalist Design for founders and businesses that need reliable digital resolution.",
       },
+      { name: "robots", content: "index,follow,max-image-preview:large" },
       { name: "keywords", content: "System Architecture, Custom Web Solutions, Minimalist Design, Technical Partner, Raed ElMajdoub, Raed Elmajdoub, web performance optimization, digital architecture" },
     ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
   }),
 });
 

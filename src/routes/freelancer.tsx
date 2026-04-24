@@ -7,6 +7,8 @@ const MorphingWireframe = lazy(() =>
   import("@/components/MorphingWireframe").then((m) => ({ default: m.MorphingWireframe })),
 );
 
+const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://raevd.com").replace(/\/+$/, "");
+
 export const Route = createFileRoute("/freelancer")({
   component: FreelancerPage,
   head: () => ({
@@ -34,7 +36,9 @@ export const Route = createFileRoute("/freelancer")({
         content:
           "SaaS & CRM specialist and full stack JavaScript/TypeScript developer.",
       },
+      { name: "robots", content: "index,follow,max-image-preview:large" },
     ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/freelancer` }],
   }),
 });
 
