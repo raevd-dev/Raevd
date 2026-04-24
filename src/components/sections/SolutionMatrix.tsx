@@ -4,18 +4,18 @@ import { StaggeredText } from "../StaggeredText";
 const services = [
   {
     id: "01",
-    title: "Systems",
-    desc: "Design infrastructure for organizations that ship at frequency.",
+    title: "Start",
+    desc: "Digital Architecture and System Architecture to define the right roadmap from day one.",
   },
   {
     id: "02",
-    title: "Interface",
-    desc: "Surfaces that disappear into use. Interaction without ornament.",
+    title: "Fix",
+    desc: "System Resolution and Custom Web Solutions for slow, unstable, or broken platforms.",
   },
   {
     id: "03",
-    title: "Signal",
-    desc: "Brand languages calibrated for institutional permanence.",
+    title: "Scale",
+    desc: "Performance, reliability, and Minimalist Design systems built to support long-term growth.",
   },
 ];
 
@@ -33,7 +33,7 @@ export function SolutionMatrix() {
         <div className="col-span-4 md:col-span-8 lg:col-span-9 lg:col-start-2 mt-4 lg:mt-0">
           <StaggeredText
             as="h2"
-            text="Three disciplines."
+            text="Where are you now?"
             className="font-display text-[clamp(2.5rem,7vw,8rem)] text-foreground"
           />
         </div>

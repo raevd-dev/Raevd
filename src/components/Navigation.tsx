@@ -46,7 +46,7 @@ export function Navigation() {
           {theme === "dark" ? "Light" : "Dark"}
         </button>
         <a href="#portal" className="font-mono-label text-brand">
-          Portal →
+          Connect →
         </a>
       </div>
 
@@ -106,7 +106,7 @@ export function Navigation() {
                 onClick={() => setOpen(false)}
                 className="font-mono-label text-brand"
               >
-                Portal →
+                Connect →
               </a>
             </div>
           </motion.div>

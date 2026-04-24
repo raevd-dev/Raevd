@@ -15,12 +15,12 @@ export function Manifesto() {
         <div className="col-span-4 md:col-span-8 lg:col-span-9 lg:col-start-2 mt-4 lg:mt-0">
           <StaggeredText
             as="h2"
-            text="Most work shouts."
+            text="Too much complexity?"
             className="font-display text-[clamp(2.5rem,8vw,10rem)] text-foreground"
           />
           <StaggeredText
             as="h2"
-            text="Ours operates."
+            text="We clear the path."
             className="font-display text-[clamp(2.5rem,8vw,10rem)] text-foreground/30 italic"
             delay={0.2}
           />
@@ -37,7 +37,7 @@ export function Manifesto() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="text-base font-light leading-relaxed text-foreground/80"
           >
-            Architecture is not decoration. It is the load-bearing intelligence beneath every meaningful product. We compose with restraint — and let absence carry the weight.
+            If you do not know where to start, need to fix a broken platform, or want to scale without risk, we guide the technical direction and execute with precision. Your vision stays in front. We handle the complexity.
           </motion.p>
         </div>
       </div>

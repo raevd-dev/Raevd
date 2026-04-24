@@ -1,6 +1,7 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import faviconIco from "../assets/favicon.ico?url";
 import { ThemeProvider } from "@/hooks/use-theme";
 
 function NotFoundComponent() {
@@ -30,16 +31,15 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "RAEVD's 'Invisible Architect' landing page offers an immersive, high-end experience with dynamic 3D visuals." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "RAEVD's 'Invisible Architect' landing page offers an immersive, high-end experience with dynamic 3D visuals." },
+      { title: "RAEVD — Your Technical Partner to Start, Fix, Scale" },
+      { name: "description", content: "RAEVD provides System Architecture, Custom Web Solutions, and Minimalist Design to help teams start clearly, fix issues fast, and scale reliably. Founded by Raed ElMajdoub." },
+      { name: "author", content: "RAEVD" },
+      { property: "og:title", content: "RAEVD — Your Technical Partner to Start, Fix, Scale" },
+      { property: "og:description", content: "A high-end technical studio for system architecture, performance resolution, and minimalist digital execution." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "RAEVD's 'Invisible Architect' landing page offers an immersive, high-end experience with dynamic 3D visuals." },
+      { name: "twitter:title", content: "RAEVD — Your Technical Partner to Start, Fix, Scale" },
+      { name: "twitter:description", content: "System Architecture, Custom Web Solutions, and Minimalist Design for teams that need reliability." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/40eb8ea3-60d6-4531-874d-1b270dff7c49/id-preview-a5422f9f--cb196578-c114-4936-a615-62be1d907ad2.lovable.app-1776809618380.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/40eb8ea3-60d6-4531-874d-1b270dff7c49/id-preview-a5422f9f--cb196578-c114-4936-a615-62be1d907ad2.lovable.app-1776809618380.png" },
     ],
@@ -47,6 +47,11 @@ export const Route = createRootRoute({
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href: faviconIco,
       },
     ],
   }),

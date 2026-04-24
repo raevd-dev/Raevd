@@ -17,17 +17,19 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "RAEVD — The Invisible Architect" },
+      { title: "RAEVD — Start, Fix, and Scale with Confidence" },
       {
         name: "description",
         content:
-          "RAEVD designs the invisible systems beneath the loudest brands of the next decade. Silent infrastructure, calibrated interfaces, lasting signal.",
+          "RAEVD is a technical partner for System Architecture, Custom Web Solutions, and Minimalist Design. Founded by Raed ElMajdoub to help teams start right, fix what is broken, and scale with reliable execution.",
       },
-      { property: "og:title", content: "RAEVD — The Invisible Architect" },
+      { property: "og:title", content: "RAEVD — Start, Fix, and Scale with Confidence" },
       {
         property: "og:description",
-        content: "Silent infrastructure for the loudest brands of the next decade.",
+        content:
+          "System Architecture, Custom Web Solutions, and Minimalist Design for founders and businesses that need reliable digital resolution.",
       },
+      { name: "keywords", content: "System Architecture, Custom Web Solutions, Minimalist Design, Technical Partner, Raed ElMajdoub, Raed Elmajdoub, web performance optimization, digital architecture" },
     ],
   }),
 });

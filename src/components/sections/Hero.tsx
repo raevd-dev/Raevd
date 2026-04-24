@@ -21,13 +21,13 @@ export function Hero() {
         <div className="col-span-4 md:col-span-8 lg:col-span-10">
           <StaggeredText
             as="h1"
-            text="The invisible"
+            text="Start. Fix."
             className="font-display text-[clamp(2.75rem,14vw,18rem)] text-foreground"
             delay={0.6}
           />
           <StaggeredText
             as="h1"
-            text="architect."
+            text="Scale."
             className="font-display text-[clamp(2.75rem,14vw,18rem)] text-foreground/40 italic"
             delay={1.0}
           />
@@ -40,7 +40,7 @@ export function Hero() {
             transition={{ delay: 1.8, duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="font-sans text-sm font-light leading-relaxed text-muted-foreground"
           >
-            We design the systems you never see. Silent infrastructure for the loudest brands of the next decade.
+            Do not stress about the technical side. Share your vision and we make it real through System Architecture, Custom Web Solutions, and reliable delivery.
           </motion.p>
         </div>
       </div>

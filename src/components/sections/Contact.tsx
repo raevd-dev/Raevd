@@ -93,12 +93,12 @@ export function Contact() {
         <div className="col-span-4 md:col-span-8 lg:col-span-10 lg:col-start-2 mt-4 lg:mt-0">
           <StaggeredText
             as="h2"
-            text="Describe the problem."
+            text="Let us talk."
             className="font-display text-[clamp(2.25rem,8vw,9rem)] text-foreground leading-[0.95]"
           />
           <StaggeredText
             as="h2"
-            text="We answer in signal."
+            text="We will get back soon."
             className="font-display text-[clamp(2.25rem,8vw,9rem)] text-foreground/30 italic leading-[0.95]"
             delay={0.15}
           />
@@ -139,7 +139,7 @@ export function Contact() {
                       onBlur={() => markTouched("name")}
                       aria-invalid={touched.name && !!errors.name}
                       className={inputClass(touched.name, errors.name)}
-                      placeholder="Your name"
+                      placeholder="Name"
                     />
                   }
                 />
@@ -158,17 +158,17 @@ export function Contact() {
                       onBlur={() => markTouched("email")}
                       aria-invalid={touched.email && !!errors.email}
                       className={inputClass(touched.email, errors.email)}
-                      placeholder="you@domain.com"
+                      placeholder="Work email"
                     />
                   }
                 />
                 <div className="md:col-span-2">
                   <Field
-                    label="Describe the problem"
+                    label="What do you need"
                     index="03"
                     error={touched.message ? errors.message : undefined}
                     valid={touched.message && !errors.message}
-                    hint="What needs to be built, fixed, or rearchitected?"
+                    hint="Start, fix, scale, or another challenge."
                     input={
                       <textarea
                         value={form.message}
@@ -178,7 +178,7 @@ export function Contact() {
                         onBlur={() => markTouched("message")}
                         aria-invalid={touched.message && !!errors.message}
                         className={`${inputClass(touched.message, errors.message)} resize-none font-light text-lg`}
-                        placeholder="Context, constraints, deadlines…"
+                        placeholder="What needs resolution?"
                       />
                     }
                   />
@@ -190,14 +190,14 @@ export function Contact() {
 
                 <div className="md:col-span-2 mt-6 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                   <p className="font-mono-label text-foreground/40 max-w-md">
-                    By transmitting, you accept that we may reply to the contact methods above.
+                    Submit your contact and short context. We will get back to you soon.
                   </p>
                   <button
                     type="submit"
                     disabled={status === "submitting"}
                     className="group relative inline-flex items-center gap-3 border border-brand px-8 py-4 font-mono-label text-brand transition-colors hover:bg-brand hover:text-brand-foreground disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    {status === "submitting" ? "Transmitting…" : "Transmit signal"}
+                    {status === "submitting" ? "Sending..." : "Submit Contact"}
                     <span className="transition-transform group-hover:translate-x-1">→</span>
                   </button>
                 </div>
@@ -302,20 +302,20 @@ function SuccessCard({
 
       <div className="font-mono-label mb-6 flex items-center gap-3 text-brand">
         <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-brand" />
-        // transmission received
+        // request received
       </div>
 
       <h3 className="font-display text-5xl text-foreground leading-[1.05] mb-6">
-        Signal locked{name ? `, ${name}` : ""}.
+        Thanks{name ? `, ${name}` : ""}.
       </h3>
 
       <p className="font-light text-lg text-foreground/70 max-w-2xl mb-10">
-        Your transmission has been logged. Expect a reply within{" "}
+        We received your message. Expect a reply within{" "}
         <span className="text-foreground">48 hours</span> at:
       </p>
 
       <div className="mb-10 inline-flex flex-col gap-2 border-l-2 border-brand pl-6">
-        <span className="font-mono-label text-foreground/40">Reply channel</span>
+        <span className="font-mono-label text-foreground/40">Reply email</span>
         <span className="font-display text-2xl text-brand break-all">{email}</span>
       </div>
 
@@ -336,7 +336,7 @@ function SuccessCard({
         className="group inline-flex items-center gap-3 border border-foreground/20 px-6 py-3 font-mono-label text-foreground/70 transition-colors hover:border-brand hover:text-brand"
       >
         <span className="transition-transform group-hover:-translate-x-1">←</span>
-        Send another transmission
+        Send another request
       </button>
     </motion.div>
   );

@@ -6,10 +6,10 @@ import { StaggeredText } from "../StaggeredText";
 gsap.registerPlugin(ScrollTrigger);
 
 const cases = [
-  { idx: "CS-01", client: "Vault Capital", scope: "Treasury OS", year: "2025" },
-  { idx: "CS-02", client: "North Foundry", scope: "Identity System", year: "2025" },
-  { idx: "CS-03", client: "Lattice Health", scope: "Clinical Interface", year: "2024" },
-  { idx: "CS-04", client: "Meridian Labs", scope: "Research Portal", year: "2024" },
+  { idx: "CS-01", client: "From 0 to Scalable", scope: "Launch in [X] Weeks", year: "2026" },
+  { idx: "CS-02", client: "Latency Reduced", scope: "Performance +40%", year: "2026" },
+  { idx: "CS-03", client: "Conversions Increased", scope: "CRO Lift [X%]", year: "2026" },
+  { idx: "CS-04", client: "Failure Rate Lowered", scope: "Stability [X%]", year: "2026" },
 ];
 
 export function TechnicalProof() {
@@ -57,7 +57,7 @@ export function TechnicalProof() {
         <div className="col-span-4 md:col-span-8 lg:col-span-9 lg:col-start-2 mt-4 lg:mt-0">
           <StaggeredText
             as="h2"
-            text="Evidence in motion."
+            text="Proof in outcomes."
             className="font-display text-[clamp(2rem,5vw,6rem)] text-foreground"
           />
         </div>
