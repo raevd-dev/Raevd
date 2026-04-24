@@ -1,11 +1,24 @@
 import { useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { StaggeredText } from "../StaggeredText";
+import { submitContact } from "@/lib/contact-submit";
 
-type Status = "idle" | "submitting" | "success";
+type Status = "idle" | "submitting" | "success" | "error";
 type FieldName = "name" | "email" | "message";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const DEVICE_KEY_STORAGE = "raevd_device_key";
+
+function getDeviceKey() {
+  if (typeof window === "undefined") return undefined;
+  const saved = window.localStorage.getItem(DEVICE_KEY_STORAGE);
+  if (saved) return saved;
+  const generated =
+    window.crypto?.randomUUID?.() ??
+    `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  window.localStorage.setItem(DEVICE_KEY_STORAGE, generated);
+  return generated;
+}
 
 function validateField(name: FieldName, value: string): string | undefined {
   const v = value.trim();
@@ -42,6 +55,7 @@ export function Contact() {
   });
   const [submittedEmail, setSubmittedEmail] = useState("");
   const [submittedName, setSubmittedName] = useState("");
+  const [submissionError, setSubmissionError] = useState("");
 
   const errors = useMemo(
     () => ({
@@ -63,21 +77,38 @@ export function Contact() {
     setTouched((t) => ({ ...t, [field]: true }));
   }
 
-  function handleSubmit(ev: FormEvent) {
+  async function handleSubmit(ev: FormEvent) {
     ev.preventDefault();
     setTouched({ name: true, email: true, message: true });
     if (!isValid) return;
     setStatus("submitting");
-    setSubmittedEmail(form.email.trim());
-    setSubmittedName(form.name.trim());
-    // Simulated submission — no backend wired
-    setTimeout(() => setStatus("success"), 800);
+    setSubmissionError("");
+
+    const payload = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      message: form.message.trim(),
+      deviceKey: getDeviceKey(),
+    };
+
+    const response = await submitContact({ data: payload });
+
+    if (response.ok) {
+      setSubmittedEmail(payload.email);
+      setSubmittedName(payload.name);
+      setStatus("success");
+      return;
+    }
+
+    setSubmissionError(response.message);
+    setStatus("error");
   }
 
   function reset() {
     setForm({ name: "", email: "", message: "" });
     setTouched({ name: false, email: false, message: false });
     setStatus("idle");
+    setSubmissionError("");
   }
 
   return (
@@ -189,9 +220,26 @@ export function Contact() {
                 </div>
 
                 <div className="md:col-span-2 mt-6 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                  <p className="font-mono-label text-foreground/40 max-w-md">
-                    Submit your contact and short context. We will get back to you soon.
-                  </p>
+                  <div className="max-w-md">
+                    <p className="font-mono-label text-foreground/40">
+                      Submit your contact and short context. We will get back to you soon.
+                    </p>
+                    <AnimatePresence mode="wait" initial={false}>
+                      {status === "error" && submissionError ? (
+                        <motion.p
+                          key="submit-error"
+                          initial={{ opacity: 0, y: -4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -4 }}
+                          transition={{ duration: 0.18 }}
+                          className="mt-2 font-mono-label text-destructive"
+                          role="alert"
+                        >
+                          ⚠ {submissionError}
+                        </motion.p>
+                      ) : null}
+                    </AnimatePresence>
+                  </div>
                   <button
                     type="submit"
                     disabled={status === "submitting"}
@@ -244,7 +292,7 @@ function Field({
         )}
       </div>
       {input}
-      <div className="mt-2 min-h-[1.25rem]">
+      <div className="mt-2 min-h-5">
         <AnimatePresence mode="wait" initial={false}>
           {error ? (
             <motion.p
